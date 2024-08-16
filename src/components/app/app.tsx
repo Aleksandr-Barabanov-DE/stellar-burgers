@@ -36,7 +36,7 @@ const App = () => {
   useEffect(() => {
     dispatch(getIngredientsList());
     dispatch(apiGetUser());
-  }, []);
+  }, [dispatch]);
 
   return (
     <div className={styles.app}>
@@ -137,4 +137,5 @@ const App = () => {
     </div>
   );
 };
+
 export default App;
