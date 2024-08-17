@@ -12,7 +12,7 @@ export const ConstructorPage: FC = () => {
 
   /** TODO: взять переменную из стора */
   const isIngredientsLoading = loading;
-
+// GETY DISPATCH УБРАЛ
   return (
     <>
       {isIngredientsLoading ? (

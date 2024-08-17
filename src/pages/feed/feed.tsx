@@ -12,7 +12,7 @@ export const Feed: FC = () => {
   useEffect(() => {
     dispatch(getAllFeeds());
   }, []);
-
+// ТИПИЗАЦИЮ УБРАЛ
   const orders = useSelector(getOrdersFeeds);
 
   if (!orders.length) {
