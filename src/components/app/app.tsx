@@ -32,7 +32,7 @@ const App = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const background = location.state?.background;
-// ВЫЗВАНО ОДИН РАЗ
+  // ВЫЗВАНО ОДИН РАЗ
   useEffect(() => {
     dispatch(getIngredientsList());
     dispatch(apiGetUser());
