@@ -6,13 +6,12 @@ import { getAllFeeds, getOrdersFeeds } from '../../services/slices/feedsSlice';
 import { useDispatch, useSelector } from '../../services/store';
 
 export const Feed: FC = () => {
-  /** TODO: взять переменную из стора */
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(getAllFeeds());
-  }, []);
-  // ТИПИЗАЦИЮ УБРАЛ
+  }, [dispatch]);
+
   const orders = useSelector(getOrdersFeeds);
 
   if (!orders.length) {
@@ -23,12 +22,5 @@ export const Feed: FC = () => {
     dispatch(getAllFeeds());
   };
 
-  return (
-    <FeedUI
-      orders={orders}
-      handleGetFeeds={() => {
-        handleGetAllFeeds;
-      }}
-    />
-  );
+  return <FeedUI orders={orders} handleGetFeeds={handleGetAllFeeds} />;
 };

@@ -2,23 +2,12 @@ import { FC, useEffect } from 'react';
 import { Preloader } from '../ui/preloader';
 import { IngredientDetailsUI } from '../ui/ingredient-details';
 import { useSelector } from '../../services/store';
-import {
-  getIngredientsList,
-  getIngredientsState
-} from '../../services/slices/IngredientsSlice';
+import { getIngredientsState } from '../../services/slices/IngredientsSlice';
 import { useParams } from 'react-router-dom';
-import { useDispatch } from '../../services/store';
 
+// Удален вызов dispatch(getIngredientsList())
 export const IngredientDetails: FC = () => {
-  const dispatch = useDispatch();
-
   const { ingredients } = useSelector(getIngredientsState);
-
-  useEffect(() => {
-    if (ingredients.length === 0) {
-      dispatch(getIngredientsList());
-    }
-  }, []);
 
   const { id } = useParams<{ id: string }>();
 
