@@ -20,7 +20,7 @@ describe('тесты асинхронных экшенов для создани
       placeNewOrder.fulfilled(
         { order: mockOrder, success: true, name: 'Test Order' }, // Добавлено поле name
         'requestId123',
-        []                    // Заменено на пустой массив
+        [] // Заменено на пустой массив
       )
     );
     const { orderModalData, orderRequest, error } = newState;
@@ -34,8 +34,8 @@ describe('тесты асинхронных экшенов для создани
     const newState = newOrderSliceReducer(
       initialState,
       placeNewOrder.pending(
-        'requestId123',       
-        []                    // Заменено на пустой массив
+        'requestId123',
+        [] // Заменено на пустой массив
       )
     );
     const { orderRequest } = newState;
@@ -47,9 +47,9 @@ describe('тесты асинхронных экшенов для создани
     const newState = newOrderSliceReducer(
       initialState,
       placeNewOrder.rejected(
-        new Error('test error'), 
-        'requestId123',         
-        []                      // Заменено на пустой массив
+        new Error('test error'),
+        'requestId123',
+        [] // Заменено на пустой массив
       )
     );
     const { error, orderRequest } = newState;
