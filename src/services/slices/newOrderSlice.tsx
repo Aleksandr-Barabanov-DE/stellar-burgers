@@ -2,14 +2,13 @@ import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import { TOrder } from '@utils-types';
 import { orderBurgerApi } from '@api';
 
+// Создаем асинхронный экшен
 export const placeNewOrder = createAsyncThunk(
   'order/createOrder',
-  async (orderData: any) => {
-    const response = await orderBurgerApi(orderData);
-    return response; // убедитесь, что структура ответа соответствует вашему ожиданию
-  }
+  orderBurgerApi
 );
 
+// Определяем начальное состояние
 export interface TNewOrderState {
   orderRequest: boolean;
   orderModalData: TOrder | null;
@@ -22,6 +21,7 @@ export const initialState: TNewOrderState = {
   error: undefined
 };
 
+// Создаем слайс
 export const newOrderSlice = createSlice({
   name: 'newOrder',
   initialState,
@@ -36,7 +36,7 @@ export const newOrderSlice = createSlice({
     builder
       .addCase(placeNewOrder.fulfilled, (state, action) => {
         state.orderRequest = false;
-        state.orderModalData = action.payload.order; // Убедитесь, что структура данных соответствует ожиданиям
+        state.orderModalData = action.payload.order;
       })
       .addCase(placeNewOrder.rejected, (state, action) => {
         state.orderRequest = false;
@@ -48,7 +48,7 @@ export const newOrderSlice = createSlice({
   }
 });
 
+// Экспортируем все необходимые элементы
 export const { resetOrder } = newOrderSlice.actions;
 export const { getOrderRequest, getOrderModalData } = newOrderSlice.selectors;
-
 export default newOrderSlice.reducer;
