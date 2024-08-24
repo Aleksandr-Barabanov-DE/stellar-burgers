@@ -1,5 +1,4 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-
 import { TUser } from '@utils-types';
 import {
   registerUserApi,
@@ -52,7 +51,7 @@ export const userSlice = createSlice({
         state.isLoading = false;
       })
       .addCase(register.rejected, (state, action) => {
-        state.error = action.error.message!;
+        state.error = action.error.message || ''; // Ensure default empty string if message is undefined
         state.isLoading = false;
       })
       .addCase(register.pending, (state) => {
@@ -68,7 +67,7 @@ export const userSlice = createSlice({
       })
       .addCase(login.rejected, (state, action) => {
         state.isAuthChecked = false;
-        state.error = action.error.message!;
+        state.error = action.error.message || ''; // Ensure default empty string if message is undefined
         state.isLoading = false;
       })
       .addCase(login.pending, (state) => {
@@ -84,8 +83,13 @@ export const userSlice = createSlice({
       })
       .addCase(apiGetUser.rejected, (state, action) => {
         state.isAuthChecked = false;
-        state.error = action.error.message!;
+        state.error = action.error.message || ''; // Ensure default empty string if message is undefined
         state.isLoading = false;
+      })
+      .addCase(apiGetUser.pending, (state) => {
+        state.isAuthChecked = false; // Make sure this is correct
+        state.error = '';
+        state.isLoading = true;
       });
     builder
       .addCase(updateUser.fulfilled, (state, action) => {
@@ -95,18 +99,27 @@ export const userSlice = createSlice({
       })
       .addCase(updateUser.rejected, (state, action) => {
         state.isAuthChecked = false;
-        state.error = action.error.message!;
+        state.error = action.error.message || ''; // Ensure default empty string if message is undefined
         state.isLoading = false;
       })
       .addCase(updateUser.pending, (state) => {
         state.error = '';
         state.isLoading = true;
       });
-    builder.addCase(logout.fulfilled, (state) => {
-      state.isAuthChecked = false;
-      state.user = { email: '', name: '' };
-      state.isLoading = false;
-    });
+    builder
+      .addCase(logout.fulfilled, (state) => {
+        state.isAuthChecked = false;
+        state.user = { email: '', name: '' };
+        state.isLoading = false;
+      })
+      .addCase(logout.rejected, (state, action) => {
+        state.error = action.error.message || ''; // Ensure default empty string if message is undefined
+        state.isLoading = false;
+      })
+      .addCase(logout.pending, (state) => {
+        state.error = '';
+        state.isLoading = true;
+      });
   }
 });
 

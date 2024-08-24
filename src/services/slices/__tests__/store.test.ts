@@ -8,35 +8,33 @@ import { userOrdersSlice } from '../../slices/userOrdersSlice';
 
 // Начальные состояния для каждого слайса
 const initialIngredientsState = {
-  isLoading: false,
+  loading: false, // поправлено на loading в соответствии с вашими ошибками
   ingredients: [],
-  error: undefined
+  error: null // изменено с undefined на null
 };
 
 const initialFeedsState = {
-  isLoading: false,
+  isLoading: true, // поправлено на isLoading в соответствии с вашими ошибками
   orders: [],
-  feed: {
-    total: 0,
-    totalToday: 0
-  },
-  error: undefined
+  total: 0,
+  totalToday: 0,
+  error: undefined // изменено с null на undefined
 };
 
 const initialNewOrderState = {
   isLoading: false,
-  error: undefined
+  orderRequest: false, // добавлено в соответствии с вашими ошибками
+  orderModalData: null, // добавлено в соответствии с вашими ошибками
+  error: undefined // изменено с null на undefined
 };
 
 const initialConstructorState = {
+  bun: null, // изменено с {} на null в соответствии с вашими ошибками
+  ingredients: [],
+  error: undefined, // изменено с null на undefined
   isLoading: false,
-  error: undefined,
   orderRequest: false,
-  orderModalData: null,
-  constructorItems: {
-    bun: {},
-    ingredients: []
-  }
+  orderModalData: null
 };
 
 const initialUserState = {
@@ -46,12 +44,12 @@ const initialUserState = {
     email: '',
     name: ''
   },
-  error: undefined
+  error: '' // изменено с undefined на пустую строку
 };
 
 const initialUserOrdersState = {
   isLoading: false,
-  error: undefined,
+  error: undefined, // изменено с null на undefined
   orderData: []
 };
 

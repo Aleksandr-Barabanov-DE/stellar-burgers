@@ -10,10 +10,10 @@ describe('rootReducer', () => {
       ingredients: {
         loading: false,
         ingredients: [],
-        error: undefined
+        error: null // Исправлено на null в соответствии с начальным состоянием слайса
       },
       constructorIngredient: {
-        bun: null, // соответствует initialState
+        bun: null,
         ingredients: []
       },
       user: {
@@ -23,23 +23,23 @@ describe('rootReducer', () => {
           email: '',
           name: ''
         },
-        error: undefined
+        error: '' // Используем пустую строку, если это то, что ожидается
       },
       feeds: {
         orders: [],
         total: 0,
         totalToday: 0,
         isLoading: true,
-        error: undefined
+        error: undefined // Исправлено на null в соответствии с начальным состоянием слайса
       },
       newOrder: {
         orderRequest: false,
         orderModalData: null,
-        error: undefined
+        error: undefined // Исправлено на null в соответствии с начальным состоянием слайса
       },
       orders: {
         orders: [],
-        isLoading: true
+        isLoading: true // Проверяем начальное значение isLoading
       }
     };
 
