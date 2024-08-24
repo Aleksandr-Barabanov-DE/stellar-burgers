@@ -12,7 +12,7 @@ export const rootReducer = combineReducers({
   [userSlice.name]: userSlice.reducer,
   [feedsSlice.name]: feedsSlice.reducer,
   [newOrderSlice.name]: newOrderSlice.reducer,
-  [userOrdersSlice.name]: userOrdersSlice.reducer,
+  [userOrdersSlice.name]: userOrdersSlice.reducer
 });
 
 export type RootState = ReturnType<typeof rootReducer>;

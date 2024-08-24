@@ -2,7 +2,7 @@ import { combineReducers, configureStore } from '@reduxjs/toolkit';
 import { ingredientsSlice } from './slices/IngredientsSlice';
 import { feedsSlice } from './slices/feedsSlice';
 import { newOrderSlice } from './slices/newOrderSlice';
-import { rootReducer } from "./slices/rootReducer";
+import { rootReducer } from './slices/rootReducer';
 
 import {
   TypedUseSelectorHook,

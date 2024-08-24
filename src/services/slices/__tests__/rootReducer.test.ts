@@ -29,17 +29,17 @@ describe('rootReducer', () => {
         orders: [],
         total: 0,
         totalToday: 0,
-        isLoading: true, 
+        isLoading: true,
         error: undefined
       },
       newOrder: {
-        orderRequest: false, 
-        orderModalData: null, 
-        error: undefined 
+        orderRequest: false,
+        orderModalData: null,
+        error: undefined
       },
       orders: {
         orders: [],
-        isLoading: true 
+        isLoading: true
       }
     };
 
