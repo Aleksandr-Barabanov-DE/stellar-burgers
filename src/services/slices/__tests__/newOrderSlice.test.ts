@@ -1,7 +1,7 @@
 import newOrderSliceReducer, {
   initialState,
   placeNewOrder
-} from '../newOrderSlice'; // Убедитесь, что путь правильный
+} from '../newOrderSlice';
 
 const mockOrder = {
   _id: '669aedd1119d45001b4fa28a',
@@ -18,9 +18,9 @@ describe('тесты асинхронных экшенов для создани
     const newState = newOrderSliceReducer(
       initialState,
       placeNewOrder.fulfilled(
-        { order: mockOrder, success: true, name: 'Test Order' }, // Добавлено поле name
+        { order: mockOrder, success: true, name: 'Test Order' },
         'requestId123',
-        [] // Заменено на пустой массив
+        []
       )
     );
     const { orderModalData, orderRequest, error } = newState;
@@ -33,10 +33,7 @@ describe('тесты асинхронных экшенов для создани
   test('placeNewOrder pending', () => {
     const newState = newOrderSliceReducer(
       initialState,
-      placeNewOrder.pending(
-        'requestId123',
-        [] // Заменено на пустой массив
-      )
+      placeNewOrder.pending('requestId123', [])
     );
     const { orderRequest } = newState;
 
@@ -46,11 +43,7 @@ describe('тесты асинхронных экшенов для создани
   test('placeNewOrder rejected', () => {
     const newState = newOrderSliceReducer(
       initialState,
-      placeNewOrder.rejected(
-        new Error('test error'),
-        'requestId123',
-        [] // Заменено на пустой массив
-      )
+      placeNewOrder.rejected(new Error('test error'), 'requestId123', [])
     );
     const { error, orderRequest } = newState;
 

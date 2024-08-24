@@ -1,12 +1,20 @@
-describe('тест добавления игредиентов в конструктор', () => {
+
+describe('Тест добавления ингредиентов в конструктор', () => {
     beforeEach(() => {
         cy.intercept('GET', 'api/ingredients', {fixture: 'ingredients.json'});
         cy.viewport(1300, 800);
-        cy.visit('http://localhost:4000/');
+        cy.visit('/');
     });
 
-    it('добавить bun', () => {
+    it('Добавить bun', () => {
+        // Проверяем, что ингредиент не добавлен в конструктор
+        cy.get('[data-cy=constructor-bun-1]').should('not.exist');
+        cy.get('[data-cy=constructor-bun-2]').should('not.exist');
+
+        // Добавляем ингредиент
         cy.get('[data-cy=bun-ingredients]').contains('Добавить').click();
+
+        // Проверяем, что ингредиент появился в конструкторе
         cy.get('[data-cy=constructor-bun-1]')
             .contains('Ингредиент 1')
             .should('exist');
@@ -15,9 +23,20 @@ describe('тест добавления игредиентов в констру
             .should('exist');
     });
 
-    it('добавить main/sauce', () => {
+    it('Добавить main/sauce', () => {
+        // Проверяем, что ингредиенты не добавлены в конструктор
+        cy.get('[data-cy=constructor-ingredients]')
+            .contains('Ингредиент 2')
+            .should('not.exist');
+        cy.get('[data-cy=constructor-ingredients]')
+            .contains('Ингредиент 4')
+            .should('not.exist');
+
+        // Добавляем ингредиенты
         cy.get('[data-cy=mains-ingredients]').contains('Добавить').click();
         cy.get('[data-cy=sauces-ingredients]').contains('Добавить').click();
+
+        // Проверяем, что ингредиенты появились в конструкторе
         cy.get('[data-cy=constructor-ingredients]')
             .contains('Ингредиент 2')
             .should('exist');
@@ -27,30 +46,41 @@ describe('тест добавления игредиентов в констру
     });
 });
 
-describe('тест работы модального окна', () => {
+describe('Тест работы модального окна', () => {
     beforeEach(() => {
         cy.intercept('GET', 'api/ingredients', {fixture: 'ingredients.json'});
         cy.viewport(1300, 800);
-        cy.visit('http://localhost:4000/');
+        cy.visit('/');
     });
 
-    it('открыть модалку', () => {
+    it('Открыть модалку', () => {
+        // Проверяем, что модальное окно не открыто
+        cy.get('#modals').should('not.exist');
+
+        // Открываем модальное окно
         cy.contains('Ингредиент 1').click();
+
+        // Проверяем, что модальное окно открыто
         cy.contains('Детали ингредиента').should('exist');
         cy.get('#modals')
             .contains('Ингредиент 1')
             .should('exist');
     });
 
-    it('закрыть модалку по клику на крестик', () => {
+    it('Закрыть модалку по клику на крестик', () => {
+        // Открываем модальное окно
         cy.contains('Ингредиент 1').click();
         cy.contains('Детали ингредиента').should('exist');
+
+        // Закрываем модальное окно
         cy.get('[data-cy=close-modal-button]').click();
+
+        // Проверяем, что модальное окно закрыто
         cy.contains('Детали ингредиента').should('not.exist');
     });
 });
 
-describe('тест создания заказа', () => {
+describe('Тест создания заказа', () => {
     beforeEach(() => {
         cy.intercept('GET', 'api/ingredients', {fixture: 'ingredients.json'});
         cy.intercept('GET', 'api/auth/user', {fixture: 'user.json'});
@@ -60,9 +90,9 @@ describe('тест создания заказа', () => {
             'refreshToken',
             JSON.stringify('testRefreshToken')
         );
-        cy.setCookie('accessToken', 'testAccessToken')
+        cy.setCookie('accessToken', 'testAccessToken');
         cy.viewport(1300, 800);
-        cy.visit('http://localhost:4000/');
+        cy.visit('/');
     });
 
     afterEach(() => {
@@ -70,25 +100,42 @@ describe('тест создания заказа', () => {
         cy.clearCookies();
     });
 
-    it('добавить ингредиенты и создать заказ', () => {
+    it('Добавить ингредиенты и создать заказ', () => {
+        // Проверяем, что ингредиенты не добавлены в конструктор
+        cy.get('[data-cy=constructor-ingredients]')
+            .contains('Ингредиент 1')
+            .should('not.exist');
+        cy.get('[data-cy=constructor-ingredients]')
+            .contains('Ингредиент 2')
+            .should('not.exist');
+        cy.get('[data-cy=constructor-ingredients]')
+            .contains('Ингредиент 4')
+            .should('not.exist');
+
+        // Добавляем ингредиенты
         cy.get('[data-cy=bun-ingredients]').contains('Добавить').click();
         cy.get('[data-cy=mains-ingredients]').contains('Добавить').click();
         cy.get('[data-cy=sauces-ingredients]').contains('Добавить').click();
+
+        // Создаем заказ
         cy.get('[data-cy=order-button]').click();
         cy.get('[data-cy=order-button]').click();
 
+        // Проверяем тело запроса
         cy.wait('@postOrder')
             .its('request.body')
             .should('deep.equal', {
                 ingredients: ["643d69a5c3f7b9001cfa093c", "643d69a5c3f7b9001cfa0941", "643d69a5c3f7b9001cfa0942", "643d69a5c3f7b9001cfa093c"]
             });
 
+        // Проверяем номер заказа
         cy.get('[data-cy=order-number]')
             .contains('123')
             .should('exist');
         cy.get('[data-cy=close-modal-button]').click();
         cy.get('[data-cy=order-number]').should('not.exist');
-        
+
+        // Проверяем, что ингредиенты удалены из конструктора
         cy.get('[data-cy=constructor-ingredients]')
             .contains('Ингредиент 1')
             .should('not.exist');

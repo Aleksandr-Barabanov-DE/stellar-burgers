@@ -51,7 +51,7 @@ export const userSlice = createSlice({
         state.isLoading = false;
       })
       .addCase(register.rejected, (state, action) => {
-        state.error = action.error.message || ''; // Ensure default empty string if message is undefined
+        state.error = action.error.message || '';
         state.isLoading = false;
       })
       .addCase(register.pending, (state) => {
@@ -67,7 +67,7 @@ export const userSlice = createSlice({
       })
       .addCase(login.rejected, (state, action) => {
         state.isAuthChecked = false;
-        state.error = action.error.message || ''; // Ensure default empty string if message is undefined
+        state.error = action.error.message || '';
         state.isLoading = false;
       })
       .addCase(login.pending, (state) => {
@@ -83,11 +83,11 @@ export const userSlice = createSlice({
       })
       .addCase(apiGetUser.rejected, (state, action) => {
         state.isAuthChecked = false;
-        state.error = action.error.message || ''; // Ensure default empty string if message is undefined
+        state.error = action.error.message || '';
         state.isLoading = false;
       })
       .addCase(apiGetUser.pending, (state) => {
-        state.isAuthChecked = false; // Make sure this is correct
+        state.isAuthChecked = false;
         state.error = '';
         state.isLoading = true;
       });
@@ -99,7 +99,7 @@ export const userSlice = createSlice({
       })
       .addCase(updateUser.rejected, (state, action) => {
         state.isAuthChecked = false;
-        state.error = action.error.message || ''; // Ensure default empty string if message is undefined
+        state.error = action.error.message || '';
         state.isLoading = false;
       })
       .addCase(updateUser.pending, (state) => {
@@ -113,7 +113,7 @@ export const userSlice = createSlice({
         state.isLoading = false;
       })
       .addCase(logout.rejected, (state, action) => {
-        state.error = action.error.message || ''; // Ensure default empty string if message is undefined
+        state.error = action.error.message || '';
         state.isLoading = false;
       })
       .addCase(logout.pending, (state) => {

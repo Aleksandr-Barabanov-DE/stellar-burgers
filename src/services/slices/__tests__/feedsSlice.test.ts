@@ -1,4 +1,4 @@
-import reducer, { TFeedsState, feedsSlice, getAllFeeds } from '../feedsSlice'; // Обновите путь, если нужно
+import reducer, { TFeedsState, feedsSlice, getAllFeeds } from '../feedsSlice';
 import { TOrder } from '@utils-types';
 
 // Mock API response
