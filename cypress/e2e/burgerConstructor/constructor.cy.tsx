@@ -6,8 +6,12 @@ describe('Тест добавления ингредиентов в констр
         cy.intercept('GET', 'api/ingredients', { fixture: 'ingredients.json' });
         cy.viewport(1300, 800);
         cy.visit(testUrl);
-    });
 
+     // Логирование HTML-кода страницы после загрузки
+     cy.get('body').then((body) => {
+        cy.log(body.html());
+    });
+});
     it('Добавить bun', () => {
         // Проверяем, что ингредиент не добавлен в конструктор
         cy.get('[data-cy=constructor-bun-1]').should('not.exist');
