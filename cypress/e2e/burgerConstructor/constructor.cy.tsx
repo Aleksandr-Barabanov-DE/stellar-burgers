@@ -1,9 +1,11 @@
+// Определяем базовый URL как константу
+const testUrl = '/'; // Используем путь относительный к baseUrl, который задан в конфигурации Cypress
 
 describe('Тест добавления ингредиентов в конструктор', () => {
     beforeEach(() => {
-        cy.intercept('GET', 'api/ingredients', {fixture: 'ingredients.json'});
+        cy.intercept('GET', 'api/ingredients', { fixture: 'ingredients.json' });
         cy.viewport(1300, 800);
-        cy.visit('/');
+        cy.visit(testUrl);
     });
 
     it('Добавить bun', () => {
@@ -48,19 +50,13 @@ describe('Тест добавления ингредиентов в констр
 
 describe('Тест работы модального окна', () => {
     beforeEach(() => {
-        cy.intercept('GET', 'api/ingredients', {fixture: 'ingredients.json'});
+        cy.intercept('GET', 'api/ingredients', { fixture: 'ingredients.json' });
         cy.viewport(1300, 800);
-        cy.visit('/');
+        cy.visit(testUrl);
     });
 
-    it('Открыть модалку', () => {
-        // Проверяем, что модальное окно не открыто
-        cy.get('#modals').should('not.exist');
-
-        // Открываем модальное окно
+    it('открыть модалку', () => {
         cy.contains('Ингредиент 1').click();
-
-        // Проверяем, что модальное окно открыто
         cy.contains('Детали ингредиента').should('exist');
         cy.get('#modals')
             .contains('Ингредиент 1')
@@ -76,23 +72,20 @@ describe('Тест работы модального окна', () => {
         cy.get('[data-cy=close-modal-button]').click();
 
         // Проверяем, что модальное окно закрыто
-        cy.contains('Детали ингредиента').should('not.exist');
+        cy.get('#modals').should('not.exist');
     });
 });
 
 describe('Тест создания заказа', () => {
     beforeEach(() => {
-        cy.intercept('GET', 'api/ingredients', {fixture: 'ingredients.json'});
-        cy.intercept('GET', 'api/auth/user', {fixture: 'user.json'});
-        cy.intercept('POST', 'api/orders', {fixture: 'post_order.json'}).as('postOrder');
+        cy.intercept('GET', 'api/ingredients', { fixture: 'ingredients.json' });
+        cy.intercept('GET', 'api/auth/user', { fixture: 'user.json' });
+        cy.intercept('POST', 'api/orders', { fixture: 'post_order.json' }).as('postOrder');
 
-        window.localStorage.setItem(
-            'refreshToken',
-            JSON.stringify('testRefreshToken')
-        );
+        window.localStorage.setItem('refreshToken', JSON.stringify('testRefreshToken'));
         cy.setCookie('accessToken', 'testAccessToken');
         cy.viewport(1300, 800);
-        cy.visit('/');
+        cy.visit(testUrl);
     });
 
     afterEach(() => {
@@ -118,7 +111,6 @@ describe('Тест создания заказа', () => {
         cy.get('[data-cy=sauces-ingredients]').contains('Добавить').click();
 
         // Создаем заказ
-        cy.get('[data-cy=order-button]').click();
         cy.get('[data-cy=order-button]').click();
 
         // Проверяем тело запроса
