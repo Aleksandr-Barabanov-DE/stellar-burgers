@@ -2,6 +2,7 @@ import { combineReducers, configureStore } from '@reduxjs/toolkit';
 import { ingredientsSlice } from './slices/IngredientsSlice';
 import { feedsSlice } from './slices/feedsSlice';
 import { newOrderSlice } from './slices/newOrderSlice';
+import { rootReducer } from "./slices/rootReducer";
 
 import {
   TypedUseSelectorHook,
@@ -12,15 +13,9 @@ import { constructorSlice } from './slices/constructorIngredientSlice';
 import { userSlice } from './slices/userSlice';
 import { userOrdersSlice } from './slices/userOrdersSlice';
 
+// Создание store с использованием rootReducer
 const store = configureStore({
-  reducer: {
-    [ingredientsSlice.name]: ingredientsSlice.reducer,
-    [constructorSlice.name]: constructorSlice.reducer,
-    [userSlice.name]: userSlice.reducer,
-    [feedsSlice.name]: feedsSlice.reducer,
-    [newOrderSlice.name]: newOrderSlice.reducer,
-    [userOrdersSlice.name]: userOrdersSlice.reducer
-  },
+  reducer: rootReducer,
   devTools: process.env.NODE_ENV !== 'production'
 });
 

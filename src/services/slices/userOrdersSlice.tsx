@@ -39,11 +39,12 @@ export const userOrdersSlice = createSlice({
 });
 
 export const { listOfOrders } = userOrdersSlice.selectors;
-
-// Экспорт редуктора и начального состояния
-export default userOrdersSlice.reducer;
 export { initialState };
 
 // Экспорт селектора
 export const selectListOfOrders = (state: { orders: TOrdersState }) =>
   state.orders.orders;
+
+
+// Экспорт редуктора и начального состояния
+export default userOrdersSlice.reducer;
