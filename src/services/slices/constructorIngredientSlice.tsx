@@ -1,4 +1,4 @@
-import { getFeedsApi, getIngredientsApi } from '@api';
+import { getFeedsApi, getIngredientsApi } from '../../utils/burger-api';
 import { PayloadAction, createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { TConstructorIngredient, TIngredient } from '@utils-types';
 import { useSelector } from '../../services/store';
@@ -49,3 +49,4 @@ export const constructorSlice = createSlice({
 export const { addItem, deleteItem, clearAll, updateAll } =
   constructorSlice.actions;
 export const constructorSelector = constructorSlice.selectors;
+export default constructorSlice.reducer;

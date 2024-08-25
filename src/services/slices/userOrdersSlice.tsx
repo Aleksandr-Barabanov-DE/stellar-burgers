@@ -2,7 +2,7 @@ import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 
 import { TOrder } from '@utils-types';
 
-import { getOrdersApi } from '@api';
+import { getOrdersApi } from '../../utils/burger-api';
 
 export const getUserOrders = createAsyncThunk('orders/ofUser', getOrdersApi);
 
@@ -39,3 +39,11 @@ export const userOrdersSlice = createSlice({
 });
 
 export const { listOfOrders } = userOrdersSlice.selectors;
+export { initialState };
+
+// Экспорт селектора
+export const selectListOfOrders = (state: { orders: TOrdersState }) =>
+  state.orders.orders;
+
+// Экспорт редуктора и начального состояния
+export default userOrdersSlice.reducer;
