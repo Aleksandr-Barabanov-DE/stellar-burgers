@@ -52,11 +52,11 @@ describe('Тест добавления ингредиентов в констр
     });
 });
 
-describe('Тест работы модального окна', () => {
+describe('тест работы модального окна', () => {
     beforeEach(() => {
-        cy.intercept('GET', 'api/ingredients', { fixture: 'ingredients.json' });
+        cy.intercept('GET', 'api/ingredients', {fixture: 'ingredients.json'});
         cy.viewport(1300, 800);
-        cy.visit(testUrl);
+        cy.visit('http://localhost:4000/');
     });
 
     it('открыть модалку', () => {
@@ -67,16 +67,11 @@ describe('Тест работы модального окна', () => {
             .should('exist');
     });
 
-    it('Закрыть модалку по клику на крестик', () => {
-        // Открываем модальное окно
+    it('закрыть модалку по клику на крестик', () => {
         cy.contains('Ингредиент 1').click();
         cy.contains('Детали ингредиента').should('exist');
-
-        // Закрываем модальное окно
         cy.get('[data-cy=close-modal-button]').click();
-
-        // Проверяем, что модальное окно закрыто
-        cy.get('#modals').should('not.exist');
+        cy.contains('Детали ингредиента').should('not.exist');
     });
 });
 
