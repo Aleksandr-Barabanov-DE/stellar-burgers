@@ -5,12 +5,15 @@
 }
 
 .order {
-  display: block;
+  display: flex;
+  flex-direction: column;
+  max-width: 95dvw;
+  align-content: center;
   text-decoration: none;
   color: unset;
   background-color: #1c1c21;
   border-radius: 40px;
-  min-width: 576px;
+  min-width: 310px;
   box-sizing: border-box;
 }
 
