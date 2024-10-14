@@ -17,16 +17,3 @@ body {
   padding: 5px;
   justify-content: center;
 }
-main {
-  display: flex;
-  padding-top: 120px;
-  flex-direction: column;
-  justify-content: center;
-}
-
-#root {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
