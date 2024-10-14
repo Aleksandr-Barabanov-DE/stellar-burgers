@@ -1,0 +1,30 @@
+.content {
+  margin: 0 60px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  max-width: 520px;
+}
+
+.nutritional_values {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  color: #8585ad;
+}
+
+.nutritional_value {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+@media (min-width: 320px) and (max-width: 720px) {
+  .content {
+    max-width: 300px;
+  }
+}

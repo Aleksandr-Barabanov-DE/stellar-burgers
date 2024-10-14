@@ -1,0 +1,10 @@
+.items {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 32px;
+  margin: 0;
+  margin-bottom: 10px;
+  padding: 0;
+}
