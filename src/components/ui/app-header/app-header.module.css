@@ -72,7 +72,7 @@
   }
   .menu_part_left {
     align-self: center;
-
+    flex-direction: column;
     gap: 10px;
   }
 }

@@ -1,5 +1,15 @@
+main {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column-reverse;
+}
+
 .menu {
-  width: 320px;
+  width: 500px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .form {

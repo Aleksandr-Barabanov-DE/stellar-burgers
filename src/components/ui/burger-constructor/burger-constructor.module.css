@@ -75,7 +75,7 @@
 
 @media (min-width: 320px) and (max-width: 600px) {
   .burger_constructor {
-    width: 80dvw;
+    width: 90dvw;
     justify-content: center;
     align-self: center;
   }

@@ -1,6 +1,8 @@
 .link {
-  display: block;
-  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 120px;
   text-decoration: none;
   display: block;
   color: #8585ad;
@@ -20,4 +22,43 @@
 
 .button:hover {
   cursor: pointer;
+}
+
+.personalData {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+.personalDataContainer {
+  display: flex;
+  max-width: 700px;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin-left: 45px;
+}
+
+.profileText {
+  display: flex;
+  text-align: center;
+  max-width: 520px;
+}
+
+@media (max-width: 450px) {
+  .profileText {
+    max-width: 320px;
+  }
+  .personalDataContainer {
+    margin-left: 70px;
+    flex-direction: column;
+  }
+}
+
+@media (max-width: 600px) {
+  .personalData {
+    flex-direction: column;
+  }
 }
