@@ -3,6 +3,13 @@
   justify-content: left;
   align-items: flex-start;
 }
+
+@media (max-width: 500px) {
+  .columns {
+    flex-direction: column;
+  }
+}
+
 .column {
   display: inline;
   min-width: 50%;
@@ -22,6 +29,7 @@
 .title {
   margin: 0;
   text-align: left;
+  max-width: 300px;
 }
 
 .list_item {
@@ -31,4 +39,6 @@
 
 .content {
   text-align: left;
+  text-shadow: 2px 2px 5px grey;
+  font-size: clamp(2.8125rem, 2.1875rem + 3.125vw, 5rem);
 }

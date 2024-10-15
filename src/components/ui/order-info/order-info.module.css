@@ -1,7 +1,13 @@
 .wrap {
+  display: flex;
+  flex-direction: column;
   margin: 0 auto;
-  width: 640px;
+  max-width: 680px;
+  min-width: 250px;
+  border: #00cccc 2px solid;
+  padding: 16px;
 }
+
 .number {
   text-align: center;
 }
@@ -44,6 +50,7 @@
   display: flex;
   justify-content: flex-start;
   align-items: center;
+  padding: 8px 0;
 }
 
 .quantity {
@@ -51,10 +58,12 @@
 }
 
 .list {
+  display: flex;
+  flex-direction: column;
   list-style: none;
   padding: 0;
+  max-height: 380px;
   overflow-y: auto;
-  max-height: 320px;
 }
 
 .list::-webkit-scrollbar {
@@ -70,7 +79,57 @@
   display: flex;
   justify-content: flex-start;
   align-items: center;
+  padding-top: 16px;
 }
+
 .total {
   margin-left: auto;
+}
+
+@media (max-width: 600px) {
+  .wrap {
+    padding: 10px;
+    align-items: center;
+  }
+
+  .header {
+    font-size: 18px;
+  }
+
+  .img_wrap {
+    width: 48px;
+    height: 48px;
+  }
+
+  .border {
+    width: 46px;
+    height: 46px;
+  }
+
+  .item {
+    flex-direction: column;
+    align-items: center;
+    padding: 4px 0;
+  }
+
+  .img {
+    width: 80px;
+    height: 40px;
+    position: static;
+    right: auto;
+  }
+
+  .quantity {
+    margin: 0;
+  }
+
+  .bottom {
+    flex-direction: column;
+    align-items: center;
+    padding-top: 8px;
+  }
+  .total {
+    margin: 0;
+    text-align: center;
+  }
 }

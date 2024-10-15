@@ -1,34 +1,56 @@
 .containerMain {
   display: flex;
   flex-direction: column;
-  overflow: hidden;
   max-width: 1240px;
   margin-left: auto;
   margin-right: auto;
+  align-items: center;
 }
 
 .titleBox {
   width: 100%;
   max-width: 1240px;
   display: flex;
-  justify-content: flex-start;
+  flex-wrap: wrap;
+  justify-content: center;
   align-items: center;
+  text-align: center;
 }
 
 .main {
   display: flex;
-  justify-content: space-between;
-  height: 100%;
-  width: 1240px;
+  flex-wrap: wrap;
+  min-height: 100%;
+  width: 100%;
+  gap: 10px;
   overflow: hidden;
 }
 
+@media (max-width: 1300px) {
+  .main {
+    flex-direction: column-reverse;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+  }
+
+  .titleBox {
+    justify-content: center;
+    text-align: center;
+  }
+
+  .columnOrders,
+  .columnInfo {
+    max-width: 100%;
+  }
+}
+
 .columnOrders {
-  width: 608px;
+  max-width: 608px;
 }
 
 .columnInfo {
   overflow-y: auto;
   overflow-x: hidden;
-  width: 580px;
+  max-width: 580px;
 }
